@@ -10,8 +10,15 @@ module Api
         render json: @personajes
       end
     
-      # GET /api/v1/personajes/1
+      
+      # GET /api/v1/personajes?name=nombre
+      # GET /api/v1/personajes?age=edad
+      # GET /api/v1/personajes?movies=idMovie
       def show
+        @name = Personaje.find(params[:nombre])
+        @age = Personaje.find(params[:edad])
+        @movies = Personaje.find(params[:pelicula_serie_id])
+
         render json: @personaje
       end
     
@@ -48,7 +55,7 @@ module Api
     
         # Only allow a list of trusted parameters through.
         def personaje_params
-          params.require(:personaje).permit(:imagen, :nombre, :edad, :peso, :historia)
+          params.require(:personaje).permit(:imagen, :nombre, :edad, :peso, :historia, :pelicula_serie_id)
         end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_160934) do
+ActiveRecord::Schema.define(version: 2021_12_08_112144) do
 
   create_table "generos", force: :cascade do |t|
     t.string "nombre"
@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 2021_12_06_160934) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "genero_id"
+    t.bigint "personaje_id"
     t.index ["genero_id"], name: "index_pelicula_series_on_genero_id"
+    t.index ["personaje_id"], name: "index_pelicula_series_on_personaje_id"
   end
 
   create_table "pelicula_series_personajes", id: false, force: :cascade do |t|
@@ -44,6 +46,8 @@ ActiveRecord::Schema.define(version: 2021_12_06_160934) do
     t.text "historia"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "pelicula_serie_id"
+    t.index ["pelicula_serie_id"], name: "index_personajes_on_pelicula_serie_id"
   end
 
   create_table "users", force: :cascade do |t|

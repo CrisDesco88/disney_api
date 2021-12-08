@@ -11,8 +11,15 @@ module Api
         render json: @pelicula_series
       end
     
-      # GET /api/v1/pelicula_series/1
+      # GET /api/v1/pelicula_series/name
+      # GET /api/v1/pelicula_series/genre
+      # GET /api/v1/pelicula_series/order
       def show
+        @name = PeliculaSerie.find(params[:nombre])
+        @genre = PeliculaSerie.find(params[:genero_id])
+        @order_asc = PeliculaSerie.order('created_at ASC')
+        @order_desc = PeliculaSerie.order('created_at DESC')
+
         render json: @pelicula_series
       end
     
